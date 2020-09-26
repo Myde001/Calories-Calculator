@@ -19,7 +19,8 @@ def myForm():
 @app.route('/join', methods=['GET','POST'])
 def myFormPost():
     link = request.form['text']
-    cal = Calories.getCalories(link)
+    cll = Calories(link)
+    cal = cll.getCalories()
     return jsonify(result=cal)
     
 
