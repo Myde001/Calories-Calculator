@@ -42,7 +42,7 @@ class Calories:
         ques = "What is the total calories of " + result + "?"
         res = client.query(ques)
         answer = next(res.results).text
-        return result+" has "+answer
+        return result + " has " + answer
     
            
 
