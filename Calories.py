@@ -40,7 +40,7 @@ class Calories:
         result = self.getFoodName()
         app_id = "GPEART-TX26A29R4A"
         client = wolframalpha.Client(app_id)
-        ques = "What is the total calories of "+ result +"?"
+        ques = "What is the total calories of " + result + "?"
         res = client.query(ques)
         answer = next(res.results).text
         return result+" has "+answer
