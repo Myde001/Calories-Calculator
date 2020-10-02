@@ -37,8 +37,7 @@ class Calories:
     
     
     def getCalories(self):
-        self.getFoodName()
-        result = self.result
+        result = self.getFoodName()
         app_id = "GPEART-TX26A29R4A"
         client = wolframalpha.Client(app_id)
         ques = "What is the total calories of "+ result +"?"
@@ -47,12 +46,7 @@ class Calories:
         return result+" has "+answer
     
            
-        
 
-
-'''link = input("Enter the link to the picture: ")
-food = calories(link)
-print(food.getCalories())'''
         
 
 
