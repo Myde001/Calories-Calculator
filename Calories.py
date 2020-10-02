@@ -7,6 +7,7 @@ Created on Wed Sep 23 00:45:03 2020
 """
 
 from clarifai.rest import ClarifaiApp, Image as ClImage
+from dotenv import load_dotenv
 
 import wolframalpha
 
