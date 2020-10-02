@@ -30,5 +30,5 @@ def myFormPost():
     
 
 if __name__ =='__main__':
-    PRT = os.getenv("Port")
+    PRT = os.getenv("port")
     app.run(debug = True, port =PRT)
