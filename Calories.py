@@ -7,6 +7,7 @@ Created on Wed Sep 23 00:45:03 2020
 """
 
 from clarifai.rest import ClarifaiApp, Image as ClImage
+import os
 from pathlib import Path 
 
 env_path = Path('.') / '.env'
@@ -24,7 +25,8 @@ class Calories:
     
     def getFoodName(self):
         self.lst=[]
-        app = ClarifaiApp(api_key='64f97bc1c2e34da9aeaf6103fea866d4')
+        API_KEY = os.getenv("API_KEY")
+        app = ClarifaiApp(api_key=API_KEY)
         model = app.models.get('food-items-v1.0')
         image = ClImage(url=self.image)
         response_data = model.predict([image])
@@ -38,7 +40,8 @@ class Calories:
     
     def getCalories(self):
         result = self.getFoodName()
-        app_id = "GPEART-TX26A29R4A"
+        ID = os.getenv("API_ID")
+        app_id = ID
         client = wolframalpha.Client(app_id)
         ques = "What is the total calories of " + result + "?"
         res = client.query(ques)
