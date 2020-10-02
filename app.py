@@ -8,6 +8,11 @@ Created on Wed Sep 23 21:27:38 2020
 
 from flask import Flask, jsonify, request, render_template
 from Calories import Calories
+import os
+from pathlib import Path 
+
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 
@@ -25,4 +30,5 @@ def myFormPost():
     
 
 if __name__ =='__main__':
-    app.run(debug = True, port =8000)
+    PRT = os.getenv("Port")
+    app.run(debug = True, port =PRT)
