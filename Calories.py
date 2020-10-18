@@ -9,19 +9,18 @@ Created on Wed Sep 23 00:45:03 2020
 from clarifai.rest import ClarifaiApp, Image as ClImage
 import wolframalpha
 import os
-from pathlib import Path 
 
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
 
 class Calories:
  
-    def __init__(self,image):
+    def __init__(self,image, API_KEY,API_ID):
         self.image = image
+        self.API_KEY = API_KEY
+        self.API_ID = API_ID
     
     def getFoodName(self):
         self.lst=[]
-        API_KEY = os.getenv("API_KEY")
+        API_KEY = os.getenv(self.API_KEY)
         app = ClarifaiApp(api_key=API_KEY)
         model = app.models.get('food-items-v1.0')
         image = ClImage(url=self.image)
@@ -36,7 +35,7 @@ class Calories:
     
     def getCalories(self):
         result = self.getFoodName()
-        ID = os.getenv("API_ID")
+        ID = os.getenv(self.API_ID)
         app_id = ID
         client = wolframalpha.Client(app_id)
         ques = "What is the total calories of " + result + "?"
