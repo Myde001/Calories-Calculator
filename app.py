@@ -24,7 +24,10 @@ def myForm():
 @app.route('/join', methods=['GET','POST'])
 def myFormPost():
     image_url = request.form['text']
-    call_calories = Calories(image_url,API_KEY,API_ID)
+    config ={}
+    config[0] = os.getenv(API_KEY)
+    config[1] = os.getenv(API_ID)
+    call_calories = Calories(image_url,config[0],config[1])
     calories_value = call_calories.getCalories()
     return jsonify(result=calories_value)
     
