@@ -13,17 +13,20 @@ import os
 
 class Calories:
  
-    def __init__(self,image, API_KEY,API_ID):
+    def __init__(self, api_key,api_id):
         self.image = image
-        self.API_KEY = API_KEY
-        self.API_ID = API_ID
+        self.API_KEY = api_key
+        self.API_ID = api_id
+      
+    def getKeys(self):
+        self.app = ClarifaiApp(api_key=self.api_key)
+        self.client = wolframalpha.Client(self.api_id)
     
-    def getFoodName(self):
+    def getFoodName(self,image):
         self.lst=[]
-        app = ClarifaiApp(api_key=self.API_KEY)
-        model = app.models.get('food-items-v1.0')
-        image = ClImage(url=self.image)
-        response_data = model.predict([image])
+        model = self.app.models.get('food-items-v1.0')
+        image_val = ClImage(url=image)
+        response_data = model.predict([image_val])
         concepts = response_data['outputs'][0]["data"]['concepts']
         max1 =max([concept['value']for concept in concepts])
         for concept in concepts:
@@ -32,12 +35,10 @@ class Calories:
             return self.result
     
     
-    def getCalories(self):
-        result = self.getFoodName()
-
-        client = wolframalpha.Client(self.API_ID)
+    def getCalories(self,image):
+        result = self.getFoodName(image)
         ques = "What is the total calories of " + result + "?"
-        res = client.query(ques)
+        res = self.client.query(ques)
         answer = next(res.results).text
         return result + " has " + answer
     
