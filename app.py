@@ -25,13 +25,13 @@ def myForm():
 def myFormPost():
     image_url = request.form['text']
     config ={}
-    config[0] = os.getenv(API_KEY)
-    config[1] = os.getenv(API_ID)
+    config[clarifai_key] = os.getenv(API_KEY)
+    config[wolframalpha_key] = os.getenv(API_ID)
     call_calories = Calories(config[0],config[1])
     calories_value = call_calories.getCalories(image_url)
     return jsonify(result=calories_value)
     
 
 if __name__ =='__main__':
-    PRT = os.getenv("port")
-    app.run(debug = True, port =PRT)
+    port_val = os.getenv("port")
+    app.run(debug = True, port =port_val)
