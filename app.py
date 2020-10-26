@@ -23,8 +23,8 @@ def myForm():
 
 @app.route('/join', methods=['GET','POST'])
 def myFormPost():
-    image_filepath = request.form['text']
-    call_calories = Calories(image_filepath,API_KEY,API_ID)
+    image_url = request.form['text']
+    call_calories = Calories(image_url,API_KEY,API_ID)
     calories_value = call_calories.getCalories()
     return jsonify(result=calories_value)
     
