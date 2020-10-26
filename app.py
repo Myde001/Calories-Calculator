@@ -8,14 +8,13 @@ Created on Wed Sep 23 21:27:38 2020
 
 from flask import Flask, jsonify, request, render_template
 from Calories import Calories
-import os
-from pathlib import Path 
-
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 
+port = 0
+clarifai_key = 1
+wolframalpha_key =2
+config ={ port:8000,clarifai_key:"64f97bc1c2e34da9aeaf6103fea866d4",wolframalpha_key:"GPEART-TX26A29R4A" }
 
 @app.route('/')
 def myForm():
@@ -23,15 +22,14 @@ def myForm():
 
 @app.route('/join', methods=['GET','POST'])
 def myFormPost():
-    image_url = request.form['text']
-    config ={}
-    config[clarifai_key] = os.getenv(API_KEY)
-    config[wolframalpha_key] = os.getenv(API_ID)
-    call_calories = Calories(config[0],config[1])
+    image_url = request.args.get('text')
+
+    
+    call_calories = Calories(config[clarifai_key],config[wolframalpha_key])
     calories_value = call_calories.getCalories(image_url)
     return jsonify(result=calories_value)
     
 
 if __name__ =='__main__':
-    port_val = os.getenv("port")
-    app.run(debug = True, port = port_val)
+    
+    app.run(debug = True, port = config[port])
