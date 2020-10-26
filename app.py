@@ -27,8 +27,8 @@ def myFormPost():
     config ={}
     config[0] = os.getenv(API_KEY)
     config[1] = os.getenv(API_ID)
-    call_calories = Calories(image_url,config[0],config[1])
-    calories_value = call_calories.getCalories()
+    call_calories = Calories(config[0],config[1])
+    calories_value = call_calories.getCalories(image_url)
     return jsonify(result=calories_value)
     
 
