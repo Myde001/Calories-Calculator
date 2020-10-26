@@ -14,7 +14,7 @@ import os
 class Calories:
  
     def __init__(self, api_key,api_id):
-        self.image = image
+        
         self.API_KEY = api_key
         self.API_ID = api_id
       
