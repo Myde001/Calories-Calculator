@@ -15,10 +15,8 @@ class Calories:
  
     def __init__(self, api_key,api_id):
         
-        self.API_KEY = api_key
-        self.API_ID = api_id
-      
-    def getKeys(self):
+        self.api_key = api_key
+        self.api_id = api_id
         self.app = ClarifaiApp(api_key=self.api_key)
         self.client = wolframalpha.Client(self.api_id)
     
