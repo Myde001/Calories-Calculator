@@ -20,8 +20,7 @@ class Calories:
     
     def getFoodName(self):
         self.lst=[]
-        API_KEY = os.getenv(self.API_KEY)
-        app = ClarifaiApp(api_key=API_KEY)
+        app = ClarifaiApp(api_key=self.API_KEY)
         model = app.models.get('food-items-v1.0')
         image = ClImage(url=self.image)
         response_data = model.predict([image])
@@ -35,9 +34,8 @@ class Calories:
     
     def getCalories(self):
         result = self.getFoodName()
-        ID = os.getenv(self.API_ID)
-        app_id = ID
-        client = wolframalpha.Client(app_id)
+
+        client = wolframalpha.Client(self.API_ID)
         ques = "What is the total calories of " + result + "?"
         res = client.query(ques)
         answer = next(res.results).text
