@@ -23,11 +23,11 @@ def myForm():
 @app.route('/join', methods=['GET','POST'])
 def myFormPost():
     image_url = request.args.get('text')
-
     
     call_calories = Calories(config[clarifai_key],config[wolframalpha_key])
     calories_value = call_calories.getCalories(image_url)
-    return jsonify(result=calories_value)
+    return render_template("my-form.html",image_url = image_url,calories_value=calories_value)
+    
     
 
 if __name__ =='__main__':
