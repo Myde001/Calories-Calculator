@@ -6,7 +6,7 @@ Created on Wed Sep 23 21:27:38 2020
 @author: olumideakinola
 """
 
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, request, render_template
 from Calories import Calories
 
 app = Flask(__name__)
