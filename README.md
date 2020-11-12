@@ -2,7 +2,7 @@
 A simple code in python that takes pictures of food and return the name and calories content
 
 ## Setup
-1.  Go to [python download](https://www.ics.uci.edu/~pattis/common/handouts/pythoneclipsejava/python.html)to download the latest version on your device
+1.  Go to [python](https://www.ics.uci.edu/~pattis/common/handouts/pythoneclipsejava/python.html) to download the latest version on your device
 2.  Required Packages for the code to run are in requirements.txt
     to download: run 'pip install -r requirements.txt' in you terminal for mac or cmd for windows
 3.  Next step is to run app.py 
