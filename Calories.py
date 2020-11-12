@@ -38,8 +38,7 @@ class Calories:
         ques = "What is the total calories of " + result + "?"
         res = self.client.query(ques)
         answer = next(res.results).text
-        print("The food displayed is "+ result)
-        return "it has " + answer
+        return "The food displayed is "+result + ", it has " + answer
     
            
 
